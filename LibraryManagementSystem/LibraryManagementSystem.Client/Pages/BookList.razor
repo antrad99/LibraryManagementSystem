@@ -1,0 +1,47 @@
+﻿@page "/"
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+
+<PageTitle>Books List</PageTitle>
+
+<h1>Book List</h1>
+<button style="margin-left: 5px;" class="pageButton" @onclick="addBook">Add Book</button>
+
+
+@if (Loading)
+{
+    <p>Loading...</p>
+}
+@if (NoResults)
+{
+    <p>No book(s) found.</p>
+}
+@if (DisplayResults)
+{
+    <table cellpadding="10">
+        <tr>
+            <th></th>
+            <th>Author</th>
+            <th>Title<button style="margin-left: 5px;" class="pageButton" disabled="@(selectedOrderByTitle)" @onclick="orderByTitle">Order</button></th>
+            <th>Pub Year<button style="margin-left: 5px;" class="pageButton" disabled="@(selectedOrderByPubYear)" @onclick="orderByPubYear">Order</button></th>
+            <th>ISBN</th>
+        </tr>
+    @foreach (var bookDto in booksDto)
+    {
+        <tr>
+            <td>
+                <button style="margin-left: 5px;" class="pageButton" @onclick="(e => editBook(bookDto.Id))">Edit</button>
+            </td>
+            <td>@bookDto.Author</td>
+                <td>@bookDto.Title</td>
+            <td>@bookDto.PublicationYear</td>
+            <td>@bookDto.ISBN</td>
+        </tr>            
+    }
+    </table>
+    <div style="margin-top: 30px;">
+    </div>
+}
+@if (DisplayError)
+{
+    <ErrorComponent/>
+}

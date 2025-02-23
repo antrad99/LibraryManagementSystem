@@ -1,0 +1,34 @@
+# For more info on HTTP files go to https://aka.ms/vs/httpfile
+GET https://localhost:5001/api/book/orderBy/PublicationYear
+
+###
+
+GET https://localhost:5001/api/book/1
+
+###
+
+POST https://localhost:5001/api/book
+Content-Type: application/json
+
+{
+    "ISBN" : "ABC1234567",
+    "Author" : "Author 1",
+    "Title" : "Title 1",
+    "PublicationYear" : 2020
+}
+
+###
+PUT https://localhost:5001/api/book/3
+Content-Type: application/json
+
+{
+    "ISBN" : "ABC1234567_",
+    "Author" : "Author 1_",
+    "Title" : "Title 1_",
+    "PublicationYear" : 2021
+}
+
+###
+GET https://localhost:5001/api/book/isbn/ABC1234567A
+
+

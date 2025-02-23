@@ -1,0 +1,62 @@
+﻿@page "/edit-book/{id:int}"
+@rendermode @(new InteractiveWebAssemblyRenderMode(prerender: false))
+
+<PageTitle>Edit Book</PageTitle>
+
+<h1>Edit Book</h1>
+@if (DisplayError)
+{
+    <ErrorComponent />
+}
+@if (Loading)
+{
+    <p>Loading...</p>
+}
+@if (DisplayMessage)
+{
+    <div style="color:red">@Message</div>
+}
+@if (DisplayResults)
+{
+    <EditForm Model="@bookDto" OnValidSubmit="@HandleValidSubmit" Context="formContext">
+        <DataAnnotationsValidator />
+        <ValidationSummary />
+        <div>
+            <label class="pageLabel" for="Author">Author:</label>
+        </div>
+        <div>
+            <InputText class="TextBox" id="Author"  @bind-Value="bookDto.Author" />
+            <ValidationMessage For="@(() => bookDto.Author)" />
+        </div>
+        <div>
+            <label class="pageLabel" for="Title">Title:</label>
+        </div>
+        <div>
+            <InputText class="TextBox" id="Title" @bind-Value="bookDto.Title" />
+            <ValidationMessage For="@(() => bookDto.Title)" />
+        </div>
+        <div>
+            <label class="pageLabel" for="PubYear">Publication Year:</label>
+        </div>
+        <div>
+            <InputNumber class="TextBox" id="PubYear" @bind-Value="bookDto.PublicationYear" />
+            <ValidationMessage For="@(() => bookDto.PublicationYear)" />
+        </div>
+        <div>
+            <label class="pageLabel" for="ISBN">ISBN:</label>
+        </div>
+        <div>
+            <InputText class="TextBox" id="ISBN" @bind-Value="bookDto.ISBN" />
+            <ValidationMessage For="@(() => bookDto.ISBN)" />
+        </div>
+        @if (id == -1)
+        {
+            <button style="margin-top:10px;" class="pageButton" type="submit">Add New</button>
+        }
+        else
+        {
+            <button style="margin-top:10px;" class="pageButton" type="submit">Update</button>
+        }
+    </EditForm>
+
+}
