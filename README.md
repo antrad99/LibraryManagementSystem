@@ -4,6 +4,7 @@
 * Open the solution in VS 2022, set the LibraryManagementSystem Project as start up project, run the app.
 * To test the APIs separately use the HttpFiles in Visual Studio
 * The Unit Tests are in a separate XUnitTests project inside the same solution. 
+* PLEASE NOTE: the table for displaying the list of the books is not responsive (it was not in the requirements), it needs some attention if the application is planning to target mobile devices.
 
 # Scalability
 * The project is done using .net 9 Blazor Web App in auto rendering mode, so first it runs on the server for fast reply to the users, then it will run on the Web Browser of the user, saving resources (web socket) from server. 
